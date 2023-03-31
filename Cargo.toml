@@ -1,0 +1,11 @@
+[package]
+name = "check-key"
+version = "1.0.0"
+edition = "2021"
+authors = ["Daniel Parnell <me@danielparnell.com>"]
+
+[dependencies]
+clap = { version = "4.0.32", features = ["derive", "env"]}
+winapi = "0.3.9"
+windows-dll = "0.4.1"
+ml-progress = "0.1.0"
