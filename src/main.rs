@@ -68,7 +68,7 @@ fn main() {
                 digit: 0
             }).collect();
 
-            let combinations = (24 as u64).pow(unknowns.len() as u32);
+            let combinations = 24_u64.pow(unknowns.len() as u32);
 
             let progress = progress!(combinations; bar_fill " " pos "/" total " (" speed "/s " eta ") ").expect("progress");
 
@@ -83,7 +83,7 @@ fn main() {
                 for unknown in unknowns.iter_mut() {
                     key_slice[unknown.position] = digits[unknown.digit as usize];
                     if carry {
-                        unknown.digit = unknown.digit + 1;
+                        unknown.digit += 1;
                         carry = unknown.digit == 24;
                         if carry {
                             unknown.digit = 0;
@@ -91,7 +91,7 @@ fn main() {
                     }
                 }
 
-                let attempt = String::from_utf8_lossy(&key_slice);
+                let attempt = String::from_utf8_lossy(key_slice);
                 match validate_key(attempt.to_string().as_str(),mpc.as_str(), config.as_str()) {
                     PidGenResult::Ok => {
                         progress.finish_and_clear();
@@ -101,7 +101,7 @@ fn main() {
                     _ => {
                     }
                 }
-                counter = counter + 1;
+                counter += 1;
                 progress.inc(1);
             }
             progress.finish_and_clear()
