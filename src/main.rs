@@ -77,6 +77,7 @@ fn main() {
             let digits = DIGITS.as_bytes();
 
             let mut counter = 0;
+            let mut ticks = 1024;
             while counter<combinations {
 
                 let mut carry = true;
@@ -102,7 +103,11 @@ fn main() {
                     }
                 }
                 counter += 1;
-                progress.inc(1);
+                ticks -= 1;
+                if ticks == 0 {
+                    progress.inc(1024);
+                    ticks = 1024;
+                }
             }
             progress.finish_and_clear()
         }
